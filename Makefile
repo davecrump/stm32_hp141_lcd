@@ -1,5 +1,5 @@
 EXECUTABLE=out.elf
-STM32_LIBS=/opt/STM32Cube_FW_F7_V1.5.0
+STM32_LIBS=/opt/STM32Cube_FW_F7_V1.15.0
 
 CC=arm-none-eabi-gcc
 LD=arm-none-eabi-ld 
@@ -83,4 +83,4 @@ debug_server:
 	sudo openocd -f board/stm32f7discovery.cfg
 
 debug_gdb:
-	arm-none-eabi-gdb out.elf -ex "target remote localhost:3333" -ex "monitor reset halt" -ex "load" -ex "monitor reset halt" -ex "b main" -ex "c"
+	gdb-multiarch out.elf -ex "target remote localhost:3333" -ex "monitor reset halt" -ex "load" -ex "monitor reset halt" -ex "b main" -ex "c"

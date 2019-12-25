@@ -9,6 +9,10 @@
 #include "BUTTON.h"
 #include "options.h"
 #include "adc.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 
 short points[400];
 

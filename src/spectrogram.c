@@ -1,7 +1,11 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <memory.h>
+//#include <memory.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
 
 #include "stm32f7xx_hal.h"
 #include "GUI.h"
@@ -97,6 +101,8 @@ void spectrogram_init_data(spectrogram_t *s) {
     }
 }
 
+extern int pending_denormalization;
+
 void spectrogram_draw(spectrogram_t* s) {
 
     if(option_get_selection(OPTION_ID_VIEW_WATERFALL) == OPTION_ID_VIEW_WATERFALL_ON) {
@@ -168,6 +174,17 @@ void spectrogram_draw(spectrogram_t* s) {
         GUI_SetTextAlign( GUI_TA_RIGHT | GUI_TA_VCENTER);
         GUI_DispStringAt( buf, -3 + s->pos_x, s->pos_y + i * s->size_y/s->graticules_ny );
     }
+    if(pending_denormalization)
+    {
+        --pending_denormalization;
+        for(int i = 0; i != s->npoints; ++i)
+        {
+        s->data_normal[i] = 0;
+        }
+
+    }
+
+
 }
 
 void spectrogram_fake_data(spectrogram_t* s) {

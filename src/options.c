@@ -5,9 +5,21 @@
 static menu_t menu;
 
 int pending_normalization = 0;
+int pending_denormalization = 0;
+int normalised = 1;
 
-void do_normalization() {
-    pending_normalization = 30;
+void do_normalization()
+{
+    if (normalised == 1)  // Not normalised, so do it
+    {
+        pending_normalization = 30;
+        normalised = 0;
+    }
+    else                  // Currently normalised, so go back to absolute values
+    {
+        pending_denormalization = 1;
+        normalised = 1;
+    }
 }
 
 
@@ -17,6 +29,7 @@ void options_init() {
 
     //********************************************
     //************ Tracking generator ************
+    //************ Now Config Mode    ************
     //********************************************
 
     category_t *tgen = option_add_category("T. GEN");
@@ -37,7 +50,7 @@ void options_init() {
     option_disable(OPTION_ID_TGEN_ADJ);
 
     //********************************************
-    //************ View category  ****************
+    //************ Viewing Mode   ****************
     //********************************************
 
     category_t *view = option_add_category("VIEW");
