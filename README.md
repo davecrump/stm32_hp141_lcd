@@ -1,5 +1,7 @@
 # HP141T LCD Upgrade
 
+![Example Image](/IMG_3088.jpg)
+
 This firmware is designed to run on an STM32F746G Discovery board to enable it to complement or replace the CRT of an HP141T spectrum analyzer.
 
 A demo video with hardware connections and an overview of this codebase can be found on VK2SEB's YouTube channel here: <http://youtube.com/c/vk2seb>.  This build has been modified by G8GKQ to use the libraries availble in late 2019, and to add some additional features.
